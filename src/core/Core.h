@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <gl\glew.h>
 #include <SDL2\SDL.h>
 
 // Core of the game.

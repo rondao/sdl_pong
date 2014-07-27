@@ -50,5 +50,11 @@ int Core::init() {
 	sdlMainWindow = SDL_CreateWindow("p01_pong", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, getWidth(), getHeight(), SDL_WINDOW_OPENGL);
 	sdlGlContext = SDL_GL_CreateContext(sdlMainWindow);
 
+	//	glewExperimental = TRUE; // Needed for newest extensions.
+	GLenum err = glewInit();
+	if (err != GLEW_OK) {
+		return 0;
+	}
+
 	return 1;
 }
