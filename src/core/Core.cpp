@@ -20,10 +20,8 @@ Core::~Core() {
 }
 
 // Start the core. Execute the main loop.
-int Core::execute() {
-	if (!init()) {
-		return 0;
-	}
+void Core::execute() {
+	init();
 
 	SDL_Event event;
 
@@ -37,14 +35,15 @@ int Core::execute() {
 
 	SDL_GL_DeleteContext(sdlGlContext);
 	SDL_Quit();
-
-	return 1;
 }
 
 // Initialize the SDL sub-systems.
-int Core::init() {
+void Core::init() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-		return 0;
+		std::stringstream ss;
+		ss << "Failed to initialize SDL Systems" << std::endl
+				<< "SDL Error: " << SDL_GetError() << std::endl;
+		throw FatalError(ss.str());
 	}
 
 	sdlMainWindow = SDL_CreateWindow("p01_pong", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, getWidth(), getHeight(), SDL_WINDOW_OPENGL);
@@ -53,8 +52,9 @@ int Core::init() {
 	//	glewExperimental = TRUE; // Needed for newest extensions.
 	GLenum err = glewInit();
 	if (err != GLEW_OK) {
-		return 0;
+		std::stringstream ss;
+		ss << "Failed to initialize GLEW Systems" << std::endl
+				<< "GLEW Error: " << err << std::endl;
+		throw FatalError(ss.str());
 	}
-
-	return 1;
 }

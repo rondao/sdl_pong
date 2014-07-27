@@ -7,8 +7,12 @@
 
 #pragma once
 
+#include <sstream>
+
 #include <gl\glew.h>
 #include <SDL2\SDL.h>
+
+#include "exceptions\FatalError.h"
 
 // Core of the game.
 class Core {
@@ -28,8 +32,8 @@ public:
 	Core();
 	virtual ~Core();
 
-	int execute();
-	virtual int init();
+	void execute();
+	virtual void init();
 	void handleEvent(SDL_Event *event);
 	void onExit();
 
