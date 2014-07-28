@@ -11,9 +11,8 @@
 Core::Core() {
 	running = true;
 
-	// TODO: Fixed values for Size.
-	width = 640;
-	height = 480;
+	width = 0;
+	height = 0;
 
 	scene = NULL;
 }
@@ -25,7 +24,7 @@ Core::~Core() {
 void Core::execute() {
 	init();
 
-	scene = new IScene();
+	scene = getMainScene();
 	scene->onInit();
 
 	SDL_Event event;

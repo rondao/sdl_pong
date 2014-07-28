@@ -9,14 +9,14 @@
 
 #include <SDL2\SDL.h>
 
-#include "core\Core.h"
 #include "core\exceptions\FatalError.h"
+#include "game\Game.h"
 
 // The main full prototype is required, because SDL overwrite
 //  it with macro to make it system independent.
 int main(int argc, char *argv[]) {
 	try {
-		Core mGame;
+		Game mGame;
 		mGame.execute();
 	} catch (FatalError fe) {
 		std::cerr << fe.what();
