@@ -8,7 +8,7 @@
 #pragma once
 
 #include "IEventHandler.h"
-#include <SDL2\SDL_events.h>
+#include <SDL2/SDL_events.h>
 
 // Interface for a scene.
 class IScene : public IEventHandler {

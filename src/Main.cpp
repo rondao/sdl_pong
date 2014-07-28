@@ -7,10 +7,10 @@
 
 #include <iostream>
 
-#include <SDL2\SDL.h>
+#include <SDL2/SDL.h>
 
-#include "core\exceptions\FatalError.h"
-#include "game\Game.h"
+#include "core/exceptions/FatalError.h"
+#include "game/Game.h"
 
 // The main full prototype is required, because SDL overwrite
 //  it with macro to make it system independent.

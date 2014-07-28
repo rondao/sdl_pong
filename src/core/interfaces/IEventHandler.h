@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <SDL2\SDL_keycode.h>
+#include <SDL2/SDL_keycode.h>
 
 // Interface for handling all SDL possible events.
 class IEventHandler {

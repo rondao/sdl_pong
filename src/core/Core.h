@@ -9,11 +9,11 @@
 
 #include <sstream>
 
-#include <gl\glew.h>
-#include <SDL2\SDL.h>
+#include <gl/glew.h>
+#include <SDL2/SDL.h>
 
 #include "interfaces/IScene.h"
-#include "exceptions\FatalError.h"
+#include "exceptions/FatalError.h"
 
 // Core of the game.
 class Core {
