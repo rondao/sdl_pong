@@ -12,6 +12,7 @@
 #include <gl\glew.h>
 #include <SDL2\SDL.h>
 
+#include "interfaces/IScene.h"
 #include "exceptions\FatalError.h"
 
 // Core of the game.
@@ -23,6 +24,9 @@ private:
 	// SDL buffers.
 	SDL_Window* sdlMainWindow;
 	SDL_GLContext sdlGlContext;
+
+	// Current Scene.
+	IScene* scene;
 
 	// Windows size.
 	int width;

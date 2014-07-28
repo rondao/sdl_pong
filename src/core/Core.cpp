@@ -14,6 +14,8 @@ Core::Core() {
 	// TODO: Fixed values for Size.
 	width = 640;
 	height = 480;
+
+	scene = NULL;
 }
 
 Core::~Core() {
@@ -23,6 +25,9 @@ Core::~Core() {
 void Core::execute() {
 	init();
 
+	scene = new IScene();
+	scene->onInit();
+
 	SDL_Event event;
 
 	while (running) {
@@ -30,8 +35,13 @@ void Core::execute() {
 			handleEvent(&event);
 		}
 
+		scene->onUpdate();
+		scene->onRender();
+
 		SDL_GL_SwapWindow(sdlMainWindow);
 	}
+
+	delete scene;
 
 	SDL_GL_DeleteContext(sdlGlContext);
 	SDL_Quit();
