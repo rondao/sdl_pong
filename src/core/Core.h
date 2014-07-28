@@ -54,5 +54,8 @@ public:
 	int getHeight() {
 		return height;
 	}
+
+	// Should be overwritten to return game's main scene.
+	virtual IScene* getMainScene() = 0;
 };
 
