@@ -17,5 +17,5 @@ Game::~Game() {
 }
 
 IScene* Game::getMainScene() {
-	return new IScene();
+	return new StartScn();
 }

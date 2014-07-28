@@ -9,6 +9,7 @@
 
 #include "../core/Core.h"
 #include "../core/interfaces/IScene.h"
+#include "scene\StartScn.h"
 
 class Game: public Core {
 public:
