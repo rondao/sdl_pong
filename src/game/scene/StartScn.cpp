@@ -7,8 +7,14 @@
 
 #include "StartScn.h"
 
-StartScn::StartScn() {
+StartScn::StartScn() :
+	// TODO: Hardcoded shader loading.
+	defaultShader("res/shaders/defaultShader.vert", "res/shaders/defaultShader.frag") {
 }
 
 StartScn::~StartScn() {
+}
+
+void StartScn::onInit() {
+	defaultShader.useProgram();
 }

@@ -9,9 +9,16 @@
 
 #include "../../core/interfaces/IScene.h"
 
+#include "../../core/shaders/Shader.h"
+
 class StartScn : public IScene {
 public:
 	StartScn();
 	virtual ~StartScn();
 
+private:
+	Shader defaultShader;
+
+public:
+	void onInit();
 };
