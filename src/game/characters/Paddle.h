@@ -9,18 +9,17 @@
 
 #include <gl/glew.h>
 
+#include "../../libs/glm/glm.hpp"
+
 // TODO: Remove hardcoded graphics information.
 
 // Vertices positions (x, y).
 const float POSITIONS[] = {
-	-0.2f, 1.0f, // Top-left.
-	0.2f, 1.0f, // Top-right.
-	0.2f, -1.0f, // Bottom-right.
-	-0.2f, -1.0f  // Bottom-left.
+	-0.15f, 1.0f, // Top-left.
+	0.15f, 1.0f, // Top-right.
+	0.15f, -1.0f, // Bottom-right.
+	-0.15f, -1.0f  // Bottom-left.
 	};
-
-// Model Matrix. Transform this model to World Coordinates.
-//const glm::mat4 MODEL = glm::mat4(1.0f); // Identity Matrix.
 
 // Vertices colors (r, g, b).
 const float COLORS[] = {
@@ -42,14 +41,21 @@ public:
 	Paddle();
 	virtual ~Paddle();
 
-public:
+private:
 	GLuint vao;
 	GLuint ebo;
 	GLuint bVertices;
 	GLuint bColors;
 
+	glm::mat4 modelMatrix;
+
 public:
+	void onInit();
 	void onRender();
+
+	void transformModelMatrix(const glm::mat4 &modelMatrix);
+	const glm::mat4& getModelMatrix();
+
 	void setPositionAttrib(GLuint posAttrib);
 	void setColorAttrib(GLuint colAttrib);
 };

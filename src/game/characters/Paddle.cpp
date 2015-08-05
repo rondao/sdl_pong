@@ -7,6 +7,8 @@
 
 #include "Paddle.h"
 
+// TODO: Remove GL calls from all Paddle,
+//  They should all be in core side.
 Paddle::Paddle() {
 	// Create Vertex Array Object.
 	// This contains the Metadata on how the data of the VBO is stored.
@@ -62,6 +64,14 @@ void Paddle::onRender() {
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
+}
+
+const glm::mat4& Paddle::getModelMatrix() {
+	return modelMatrix;
+}
+
+void Paddle::transformModelMatrix(const glm::mat4 &modelMatrix) {
+	this->modelMatrix = modelMatrix * this->modelMatrix;
 }
 
 void Paddle::setPositionAttrib(GLuint posAttrib) {
