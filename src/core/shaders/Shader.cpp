@@ -38,6 +38,8 @@ void Shader::linkProgram() {
 	glAttachShader(shaderProgram, fragmentShader);
 	// Set the variable that contains the output of the Fragment Shader.
 	// A Fragment Shader may have more than one output.
+	// Binding the output data of the Fragment Shader should be done before linking.
+	// TODO: Hardcoded output data variable.
 	glBindFragDataLocation(shaderProgram, 0, "outColor");
 	glLinkProgram(shaderProgram);
 
@@ -116,4 +118,8 @@ GLuint Shader::loadFromFile(const char* filename, GLuint shaderType) {
 
 GLuint Shader::getAttrib(const char* attrib) {
 	return glGetAttribLocation(shaderProgram, attrib);
+}
+
+GLuint Shader::getUniform(const char * uniform) {
+	return glGetUniformLocation(shaderProgram, uniform);
 }

@@ -10,6 +10,11 @@
 #include "../../core/interfaces/IScene.h"
 
 #include "../../core/shaders/Shader.h"
+#include "../characters/Paddle.h"
+
+#include "../../libs/glm/glm.hpp"
+#include "../../libs/glm/gtx/transform.hpp"
+#include "../../libs/glm/gtc/type_ptr.hpp"
 
 class StartScn : public IScene {
 public:
@@ -19,6 +24,10 @@ public:
 private:
 	Shader defaultShader;
 
+	Paddle leftPaddle;
+	Paddle rightPaddle;
+
 public:
 	void onInit();
+	void onRender();
 };

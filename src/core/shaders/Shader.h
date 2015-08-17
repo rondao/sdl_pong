@@ -34,4 +34,5 @@ public:
 	void useProgram();
 
 	GLuint getAttrib(const char * attrib);
+	GLuint getUniform(const char * uniform);
 };
