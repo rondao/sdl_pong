@@ -10,6 +10,8 @@
 // TODO: Remove GL calls from all Paddle,
 //  They should all be in core side.
 Paddle::Paddle() {
+	loadFromFile("res/models/paddle.g2d", this);
+
 	// Create Vertex Array Object.
 	// This contains the Metadata on how the data of the VBO is stored.
 	// When 'glVertexAttribPointer' is called, the information is stored on the current VAO.
@@ -26,7 +28,7 @@ Paddle::Paddle() {
 	// - GL_STATIC_DRAW: The vertex data will be uploaded once and drawn many times (e.g. the world).
 	// - GL_DYNAMIC_DRAW: The vertex data will be changed from time to time, but drawn many times more than that.
 	// - GL_STREAM_DRAW: The vertex data will change almost every time it's drawn (e.g. user interface).
-	glBufferData(GL_ARRAY_BUFFER, sizeof(POSITIONS), POSITIONS, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizePosition * sizeof(GLfloat), dataPosition, GL_STATIC_DRAW);
 
 	// Create a Color Buffer Object and copy the color data to it.
 	glGenBuffers(1, &bColors);
@@ -37,20 +39,24 @@ Paddle::Paddle() {
 	// - GL_STATIC_DRAW: The vertex data will be uploaded once and drawn many times (e.g. the world).
 	// - GL_DYNAMIC_DRAW: The vertex data will be changed from time to time, but drawn many times more than that.
 	// - GL_STREAM_DRAW: The vertex data will change almost every time it's drawn (e.g. user interface).
-	glBufferData(GL_ARRAY_BUFFER, sizeof(COLORS), COLORS, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeColor * sizeof(GLfloat), dataColor, GL_STATIC_DRAW);
 
 	// Create an element array.
 	// This contains the Indices of the Vertices to assembly the triangles.
 	glGenBuffers(1, &ebo);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(EBO), EBO, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeEbo * sizeof(GLuint), dataEbo, GL_STATIC_DRAW);
 
 	// Releasing VAO to protect it from external changes.
 	glBindVertexArray(0);
 }
 
 Paddle::~Paddle() {
+	delete[] dataPosition;
+	delete[] dataColor;
+	delete[] dataEbo;
+
 	glDeleteVertexArrays(1, &vao);
 	glDeleteBuffers(1, &ebo);
 	glDeleteBuffers(1, &bVertices);
