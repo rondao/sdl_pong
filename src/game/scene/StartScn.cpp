@@ -17,6 +17,8 @@ StartScn::~StartScn() {
 
 void StartScn::onInit() {
 	defaultShader.useProgram();
+	leftPaddle.onInit();
+	rightPaddle.onInit();
 
 	// TODO: hardcoded scalation.
 	leftPaddle.transformModelMatrix(glm::scale(glm::vec3(0.15, 0.15, 1.0)));

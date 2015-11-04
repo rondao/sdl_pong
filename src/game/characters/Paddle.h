@@ -7,55 +7,22 @@
 
 #pragma once
 
-#include <gl/glew.h>
+#include <memory>
+#include <vector>
 
-#include "../../libs/glm/glm.hpp"
+#include "../../core/entities/Graphic2D.h"
 
-// TODO: Remove hardcoded graphics information.
-
-// Vertices positions (x, y).
-const float POSITIONS[] = {
-	-0.15f, 1.0f, // Top-left.
-	0.15f, 1.0f, // Top-right.
-	0.15f, -1.0f, // Bottom-right.
-	-0.15f, -1.0f  // Bottom-left.
-	};
-
-// Vertices colors (r, g, b).
-const float COLORS[] = {
-	1.0f, 1.0f, 1.0f, // Top-left.
-	1.0f, 1.0f, 1.0f, // Top-right.
-	1.0f, 1.0f, 1.0f, // Bottom-right.
-	1.0f, 1.0f, 1.0f  // Bottom-left.
-	};
-
-// Vertices indices.
-const GLuint EBO[] = {
-	0, 1, 2, // Top-right triangle.
-	2, 3, 0  // Bottom-left triangle.
-	};
-
-class Paddle
+class Paddle : public Graphic2D
 {
 public:
 	Paddle();
 	virtual ~Paddle();
 
 private:
-	GLuint vao;
-	GLuint ebo;
-	GLuint bVertices;
-	GLuint bColors;
-
-	glm::mat4 modelMatrix;
-
-public:
-	void onInit();
-	void onRender();
-
-	void transformModelMatrix(const glm::mat4 &modelMatrix);
-	const glm::mat4& getModelMatrix();
-
-	void setPositionAttrib(GLuint posAttrib);
-	void setColorAttrib(GLuint colAttrib);
+	// TODO: This cache system access OpenGL data.
+	//       All OpenGL stuff should be on Core side.
+	//       Maybe create an interface from caching on Core side.
+	static std::weak_ptr<std::vector<GLfloat>> cachePosition;
+	static std::weak_ptr<std::vector<GLfloat>> cacheColor;
+	static std::weak_ptr<std::vector<GLuint>> cacheEbo;
 };
