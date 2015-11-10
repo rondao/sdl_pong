@@ -29,5 +29,8 @@ private:
 
 public:
 	void onInit();
+	void onUpdate();
 	void onRender();
+
+	void onKeyDown(SDL_Keycode sym, Uint16 mod);
 };

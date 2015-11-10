@@ -50,3 +50,21 @@ void StartScn::onRender() {
 	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(rightPaddle.getModelMatrix()));
 	rightPaddle.onRender();
 }
+
+void StartScn::onUpdate() {
+	leftPaddle.move();
+}
+
+// TODO: Remove SDL Specifics. It should be on Core side.
+void StartScn::onKeyDown(SDL_Keycode sym, Uint16 mod) {
+	switch (sym) {
+	case SDLK_UP:
+		leftPaddle.setVelocity(0.0001f); // TODO: magic number. Need FPS System
+		break;
+	case SDLK_DOWN:
+		leftPaddle.setVelocity(-0.0001f); // TODO: magic number.
+		break;
+	default:
+		break;
+	}
+}

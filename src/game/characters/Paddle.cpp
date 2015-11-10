@@ -29,3 +29,11 @@ Paddle::Paddle() {
 
 Paddle::~Paddle() {
 }
+
+void Paddle::move() {
+	this->transformModelMatrix(glm::translate(glm::vec3(0.0, this->velocity, 0.0)));
+}
+
+void Paddle::setVelocity(float velocity) {
+	this->velocity = velocity;
+}
