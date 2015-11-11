@@ -73,3 +73,21 @@ void StartScn::onKeyDown(SDL_Keycode sym, Uint16 mod) {
 		break;
 	}
 }
+
+// TODO: Remove SDL Specifics. It should be on Core side.
+void StartScn::onKeyUp(SDL_Keycode sym, Uint16 mod) {
+	switch (sym) {
+	case SDLK_UP:
+		if (leftPaddle.getVelocity() > 0) { // Check if down Key is also pressed.
+			leftPaddle.setVelocity(0.0);
+		}
+		break;
+	case SDLK_DOWN:
+		if (leftPaddle.getVelocity() < 0) { // Check if up Key is also pressed.
+			leftPaddle.setVelocity(0.0);
+		}
+		break;
+	default:
+		break;
+	}
+}

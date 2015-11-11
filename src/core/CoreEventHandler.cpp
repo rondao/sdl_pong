@@ -22,6 +22,7 @@ void Core::handleEvent(SDL_Event* event) {
 	}
 
 	case SDL_KEYUP: {
+		scene->onKeyUp(event->key.keysym.sym, event->key.keysym.mod);
 		break;
 	}
 

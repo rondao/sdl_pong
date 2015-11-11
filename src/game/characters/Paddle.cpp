@@ -37,3 +37,7 @@ void Paddle::move() {
 void Paddle::setVelocity(float velocity) {
 	this->velocity = velocity;
 }
+
+float Paddle::getVelocity() {
+	return this->velocity;
+}

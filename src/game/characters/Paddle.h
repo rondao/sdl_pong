@@ -23,6 +23,7 @@ public:
 
 	void move();
 	void setVelocity(float velocity);
+	float getVelocity();
 
 private:
 	float velocity = 0;
