@@ -58,6 +58,10 @@ void Graphic2D::onInit() {
 	glBindVertexArray(0);
 }
 
+void Graphic2D::onPreUpdate() {
+	this->prevModelMatrix = this->modelMatrix;
+}
+
 void Graphic2D::onRender() {
 	// Draw the current VBO data, using VAO and EBO metadata.
 	// [1] Primitive to draw; [2] Number of vertices;
@@ -67,12 +71,14 @@ void Graphic2D::onRender() {
 	glBindVertexArray(0);
 }
 
-const glm::mat4& Graphic2D::getModelMatrix() {
-	return modelMatrix;
+// The closest fpsInterpolation is to 0, the closest it is to the nextUpdateFrame.
+// Which means it's getting close to the final modelMatrix value.
+const glm::mat4 Graphic2D::getModelMatrix(float fpsInterpolation) {
+	return this->modelMatrix + fpsInterpolation * (this->prevModelMatrix - this->modelMatrix);
 }
 
-void Graphic2D::transformModelMatrix(const glm::mat4 &modelMatrix) {
-	this->modelMatrix = modelMatrix * this->modelMatrix;
+void Graphic2D::transformModelMatrix(const glm::mat4 &transformMatrix) {
+	this->modelMatrix = transformMatrix * this->modelMatrix;
 }
 
 void Graphic2D::setPositionAttrib(GLuint posAttrib) {

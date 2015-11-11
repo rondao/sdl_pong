@@ -7,7 +7,8 @@
 
 #include "Game.h"
 
-Game::Game() : Core() {
+// TODO: Hardcoded UPS.
+Game::Game() : Core(30) {
 	// TODO: Hardcoded window size.
 	setWidth(640);
 	setHeight(480);

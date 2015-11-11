@@ -12,6 +12,7 @@
 #include <gl/glew.h>
 #include <SDL2/SDL.h>
 
+#include "utils/GameTime.h"
 #include "interfaces/IScene.h"
 #include "exceptions/FatalError.h"
 
@@ -28,12 +29,15 @@ private:
 	// Current Scene.
 	IScene* scene;
 
+	// GameTime controller.
+	GameTime gameTime;
+
 	// Windows size.
 	int width;
 	int height;
 
 public:
-	Core();
+	Core(unsigned int ups);
 	virtual ~Core();
 
 	void execute();

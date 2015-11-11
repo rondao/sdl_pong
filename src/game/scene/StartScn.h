@@ -29,5 +29,10 @@ private:
 
 public:
 	void onInit();
-	void onRender();
+	void onPreUpdate();
+	void onUpdate();
+	void onRender(float fpsInterpolation);
+
+	void onKeyDown(SDL_Keycode sym, Uint16 mod);
+	void onKeyUp(SDL_Keycode sym, Uint16 mod);
 };

@@ -37,16 +37,57 @@ void StartScn::onInit() {
 	rightPaddle.setColorAttrib(defaultShader.getAttrib("color"));
 }
 
-void StartScn::onRender() {
+void StartScn::onRender(float fpsInterpolation) {
 	// Clear the screen to black.
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	GLuint uniTrans = defaultShader.getUniform("model");
 
-	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(leftPaddle.getModelMatrix()));
+	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(leftPaddle.getModelMatrix(fpsInterpolation)));
 	leftPaddle.onRender();
 
-	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(rightPaddle.getModelMatrix()));
+	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(rightPaddle.getModelMatrix(fpsInterpolation)));
 	rightPaddle.onRender();
+}
+
+void StartScn::onPreUpdate() {
+	leftPaddle.onPreUpdate();
+	rightPaddle.onPreUpdate();
+}
+
+void StartScn::onUpdate() {
+	leftPaddle.move();
+}
+
+// TODO: Remove SDL Specifics. It should be on Core side.
+void StartScn::onKeyDown(SDL_Keycode sym, Uint16 mod) {
+	switch (sym) {
+	case SDLK_UP:
+		leftPaddle.setVelocity(0.03f); // TODO: magic number.
+		break;
+	case SDLK_DOWN:
+		leftPaddle.setVelocity(-0.03f); // TODO: magic number.
+		break;
+	default:
+		break;
+	}
+}
+
+// TODO: Remove SDL Specifics. It should be on Core side.
+void StartScn::onKeyUp(SDL_Keycode sym, Uint16 mod) {
+	switch (sym) {
+	case SDLK_UP:
+		if (leftPaddle.getVelocity() > 0) { // Check if down Key is also pressed.
+			leftPaddle.setVelocity(0.0);
+		}
+		break;
+	case SDLK_DOWN:
+		if (leftPaddle.getVelocity() < 0) { // Check if up Key is also pressed.
+			leftPaddle.setVelocity(0.0);
+		}
+		break;
+	default:
+		break;
+	}
 }
