@@ -8,7 +8,7 @@
 #include "Core.h"
 
 // Make the game core, initiating the windows status.
-Core::Core() {
+Core::Core(unsigned int ups) : gameTime(ups) {
 	running = true;
 
 	width = 0;
@@ -29,14 +29,17 @@ void Core::execute() {
 
 	SDL_Event event;
 
+	gameTime.reset();
 	while (running) {
-		while (SDL_PollEvent(&event)) {
-			handleEvent(&event);
+		if (gameTime.hasUpdateTimePassed()) {
+			while (SDL_PollEvent(&event)) {
+				handleEvent(&event);
+			}
+
+			scene->onUpdate();
 		}
 
-		scene->onUpdate();
 		scene->onRender();
-
 		SDL_GL_SwapWindow(sdlMainWindow);
 	}
 

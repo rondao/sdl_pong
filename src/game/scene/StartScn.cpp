@@ -59,10 +59,10 @@ void StartScn::onUpdate() {
 void StartScn::onKeyDown(SDL_Keycode sym, Uint16 mod) {
 	switch (sym) {
 	case SDLK_UP:
-		leftPaddle.setVelocity(0.0001f); // TODO: magic number. Need FPS System
+		leftPaddle.setVelocity(0.03f); // TODO: magic number.
 		break;
 	case SDLK_DOWN:
-		leftPaddle.setVelocity(-0.0001f); // TODO: magic number.
+		leftPaddle.setVelocity(-0.03f); // TODO: magic number.
 		break;
 	default:
 		break;
