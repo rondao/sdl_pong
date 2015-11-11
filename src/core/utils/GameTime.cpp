@@ -24,6 +24,10 @@ bool GameTime::hasUpdateTimePassed() {
 	}
 }
 
+float GameTime::normFrameTimeDiff() {
+	return (float) (this->timeNextUpdate - SDL_GetTicks()) / this->UPDATE_TIME;
+}
+
 void GameTime::advanceNextUpdateTime() {
 	this->timeNextUpdate += this->UPDATE_TIME;
 }

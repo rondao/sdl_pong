@@ -37,18 +37,23 @@ void StartScn::onInit() {
 	rightPaddle.setColorAttrib(defaultShader.getAttrib("color"));
 }
 
-void StartScn::onRender() {
+void StartScn::onRender(float fpsInterpolation) {
 	// Clear the screen to black.
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	GLuint uniTrans = defaultShader.getUniform("model");
 
-	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(leftPaddle.getModelMatrix()));
+	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(leftPaddle.getModelMatrix(fpsInterpolation)));
 	leftPaddle.onRender();
 
-	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(rightPaddle.getModelMatrix()));
+	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(rightPaddle.getModelMatrix(fpsInterpolation)));
 	rightPaddle.onRender();
+}
+
+void StartScn::onPreUpdate() {
+	leftPaddle.onPreUpdate();
+	rightPaddle.onPreUpdate();
 }
 
 void StartScn::onUpdate() {

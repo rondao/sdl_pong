@@ -22,6 +22,7 @@ private:
 
 public:
 	bool hasUpdateTimePassed();
+	float normFrameTimeDiff();
 	void advanceNextUpdateTime();
 	void reset();
 };

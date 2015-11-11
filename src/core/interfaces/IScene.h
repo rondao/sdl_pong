@@ -18,6 +18,7 @@ public:
 
 public:
 	virtual void onInit() {};
+	virtual void onPreUpdate() {};
 	virtual void onUpdate() {};
-	virtual void onRender() {};
+	virtual void onRender(float fpsInterpolation) {};
 };

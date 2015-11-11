@@ -32,14 +32,14 @@ void Core::execute() {
 	gameTime.reset();
 	while (running) {
 		if (gameTime.hasUpdateTimePassed()) {
+			scene->onPreUpdate();
 			while (SDL_PollEvent(&event)) {
 				handleEvent(&event);
 			}
-
 			scene->onUpdate();
 		}
 
-		scene->onRender();
+		scene->onRender(gameTime.normFrameTimeDiff());
 		SDL_GL_SwapWindow(sdlMainWindow);
 	}
 

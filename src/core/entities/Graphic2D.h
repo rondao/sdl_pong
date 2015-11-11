@@ -32,6 +32,7 @@ private:
 	GLuint bColors;
 
 	glm::mat4 modelMatrix;
+	glm::mat4 prevModelMatrix;
 
 protected:
 	std::shared_ptr<std::vector<GLfloat>> dataPosition;
@@ -40,10 +41,11 @@ protected:
 
 public:
 	void onInit();
+	void onPreUpdate();
 	void onRender();
 
-	void transformModelMatrix(const glm::mat4 &modelMatrix);
-	const glm::mat4& getModelMatrix();
+	void transformModelMatrix(const glm::mat4 &transformMatrix);
+	const glm::mat4 getModelMatrix(float fpsInterpolation);
 
 	void setPositionAttrib(GLuint posAttrib);
 	void setColorAttrib(GLuint colAttrib);
