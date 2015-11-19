@@ -16,8 +16,8 @@ public:
 	virtual ~GameTime();
 
 private:
-	unsigned int ups = 0;
-	unsigned int timeNextUpdate = 0;
+	unsigned int ups;
+	unsigned int timeNextUpdate;
 	const unsigned int UPDATE_TIME;
 
 public:

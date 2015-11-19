@@ -26,7 +26,7 @@ public:
 	float getVelocity();
 
 private:
-	float velocity = 0;
+	float velocity;
 
 	// TODO: This cache system access OpenGL data.
 	//       All OpenGL stuff should be on Core side.

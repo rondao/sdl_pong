@@ -7,7 +7,9 @@
 
 #include "GameTime.h"
 
-GameTime::GameTime(unsigned int ups) : UPDATE_TIME(1000 / ups) {
+GameTime::GameTime(unsigned int ups) :
+	UPDATE_TIME(1000 / ups), ups(0), timeNextUpdate(0)
+{
 	this->ups = ups;
 }
 

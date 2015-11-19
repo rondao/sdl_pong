@@ -11,7 +11,7 @@ std::weak_ptr<std::vector<GLfloat>> Paddle::cachePosition;
 std::weak_ptr<std::vector<GLfloat>> Paddle::cacheColor;
 std::weak_ptr<std::vector<GLuint>> Paddle::cacheEbo;
 
-Paddle::Paddle() {
+Paddle::Paddle() : velocity(0) {
 	if (Paddle::cachePosition.expired() ||
 		  Paddle::cacheColor.expired() ||
 		  Paddle::cacheEbo.expired()) {
