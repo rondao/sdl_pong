@@ -99,6 +99,10 @@ void Graphic2D::setColorAttrib(GLuint colAttrib) {
 	glBindVertexArray(0);
 }
 
+bool Graphic2D::checkCollision(const Graphic2D& other) {
+	return this->boundingBox.checkCollision(other.boundingBox);
+}
+
 void Graphic2D::loadFromFile(const char* filename) {
 	std::ifstream file;
 
@@ -130,6 +134,11 @@ void Graphic2D::loadFromFile(const char* filename) {
 	for (std::vector<GLuint>::iterator it = dataEbo->begin(); it != dataEbo->end(); ++it) {
 		file >> *it;
 	}
+
+	// Reading bounding box
+	float x, y;
+	file >> x >> y >> boundingBox.width >> boundingBox.height;
+	boundingBox.origin = glm::vec2(x, y);
 
 	// Close the file
 	file.close();

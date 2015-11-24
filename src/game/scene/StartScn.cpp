@@ -44,9 +44,10 @@ void StartScn::onRender(float fpsInterpolation) {
 
 	GLuint uniTrans = defaultShader.getUniform("model");
 
+	// This call to set modelMatrix inside shader should be on Core side.
 	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(leftPaddle.getModelMatrix(fpsInterpolation)));
 	leftPaddle.onRender();
-
+	// This call to set modelMatrix inside shader should be on Core side.
 	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(rightPaddle.getModelMatrix(fpsInterpolation)));
 	rightPaddle.onRender();
 }
