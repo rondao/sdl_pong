@@ -25,6 +25,7 @@ private:
 	float height;
 
 public:
+	Rect applyModelMatrix(const glm::mat4 &transformMatrix);
 	bool checkCollision(const Rect& other);
 	void loadFromFile(std::ifstream& file);
 };
