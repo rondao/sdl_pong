@@ -8,13 +8,13 @@
 #pragma once
 
 #include <cmath>
+#include <fstream>
 
 #include "../../libs/glm/glm.hpp"
 #include "../../libs/glm/gtc/type_ptr.hpp"
 
 class Rect
 {
-	friend class Graphic2D;
 public:
 	Rect();
 	virtual ~Rect();
@@ -26,4 +26,5 @@ private:
 
 public:
 	bool checkCollision(const Rect& other);
+	void loadFromFile(std::ifstream& file);
 };

@@ -136,9 +136,7 @@ void Graphic2D::loadFromFile(const char* filename) {
 	}
 
 	// Reading bounding box
-	float x, y;
-	file >> x >> y >> boundingBox.width >> boundingBox.height;
-	boundingBox.origin = glm::vec2(x, y);
+	boundingBox.loadFromFile(file);
 
 	// Close the file
 	file.close();

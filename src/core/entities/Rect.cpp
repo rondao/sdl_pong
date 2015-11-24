@@ -20,3 +20,10 @@ bool Rect::checkCollision(const Rect& other) {
 	return (abs(thisOrigin[0] - otherOrigin[0]) * 2 < this->width + other.width)
 		&& (abs(thisOrigin[1] - otherOrigin[1]) * 2 < this->height + other.height);
 }
+
+// Load from a file with cursor already positioned with Rect information.
+void Rect::loadFromFile(std::ifstream& file) {
+	float x, y;
+	file >> x >> y >> this->width >> this->height;
+	this->origin = glm::vec2(x, y);
+}
