@@ -14,7 +14,7 @@
 class IScene : public IEventHandler {
 public:
 	IScene() {};
-	virtual ~IScene() = 0 {};
+	virtual ~IScene() {};
 
 public:
 	virtual void onInit() {};

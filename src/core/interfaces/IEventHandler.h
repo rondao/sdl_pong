@@ -13,7 +13,7 @@
 class IEventHandler {
 public:
 	IEventHandler() {};
-	virtual ~IEventHandler() = 0 {};
+	virtual ~IEventHandler() {};
 
 public:
 	// =======================
