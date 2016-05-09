@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -15,7 +15,7 @@
 #include <memory>
 #include <vector>
 
-#include "../exceptions/Fatalerror.h"
+#include "../exceptions/FatalError.h"
 
 #include "../../libs/glm/glm.hpp"
 

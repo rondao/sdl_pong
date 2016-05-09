@@ -9,7 +9,7 @@
 
 #include <sstream>
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <SDL2/SDL.h>
 
 #include "utils/GameTime.h"

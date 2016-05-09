@@ -12,7 +12,7 @@
 #include <sstream>
 #include <fstream>
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 
 #include "../exceptions/FatalError.h"
 
