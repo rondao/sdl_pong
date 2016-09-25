@@ -15,9 +15,10 @@
 #include <memory>
 #include <vector>
 
-#include "../exceptions/Fatalerror.h"
-
 #include "../../libs/glm/glm.hpp"
+
+#include "../exceptions/Fatalerror.h"
+#include "Rect.h"
 
 class Graphic2D
 {
@@ -30,6 +31,8 @@ private:
 	GLuint ebo;
 	GLuint bVertices;
 	GLuint bColors;
+
+	Rect boundingBox;
 
 	glm::mat4 modelMatrix;
 	glm::mat4 prevModelMatrix;
@@ -49,6 +52,9 @@ public:
 
 	void setPositionAttrib(GLuint posAttrib);
 	void setColorAttrib(GLuint colAttrib);
+
+	bool isColliding(const Graphic2D& other);
+	bool isColliding(const Rect& rect);
 
 	void loadFromFile(const char* filename);
 };
