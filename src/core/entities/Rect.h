@@ -17,6 +17,7 @@ class Rect
 {
 public:
 	Rect();
+	Rect(float x, float y, float w, float h);
 	virtual ~Rect();
 
 private:
@@ -26,6 +27,11 @@ private:
 
 public:
 	Rect applyModelMatrix(const glm::mat4 &transformMatrix);
-	bool checkCollision(const Rect& other);
+	bool isColliding(const Rect& other);
+	bool isInside(const Rect& other);
 	void loadFromFile(std::ifstream& file);
+
+	glm::vec2 getOrigin();
+	float getWidth();
+	float getHeight();
 };

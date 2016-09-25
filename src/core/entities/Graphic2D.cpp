@@ -99,8 +99,12 @@ void Graphic2D::setColorAttrib(GLuint colAttrib) {
 	glBindVertexArray(0);
 }
 
-bool Graphic2D::checkCollision(const Graphic2D& other) {
-	return this->boundingBox.checkCollision(other.boundingBox);
+bool Graphic2D::isColliding(const Graphic2D& other) {
+	return isColliding(other.boundingBox);
+}
+
+bool Graphic2D::isColliding(const Rect& rect) {
+	return this->boundingBox.isColliding(rect);
 }
 
 void Graphic2D::loadFromFile(const char* filename) {

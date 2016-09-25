@@ -10,6 +10,12 @@
 Rect::Rect() {
 }
 
+Rect::Rect(float x, float y, float w, float h) {
+	this->origin = glm::vec2(x, y);
+	this->width = w;
+	this->height = h;
+}
+
 Rect::~Rect() {
 }
 
@@ -27,12 +33,24 @@ Rect Rect::applyModelMatrix(const glm::mat4 &transformMatrix) {
 	return newBB;
 }
 
-bool Rect::checkCollision(const Rect& other) {
+bool Rect::isColliding(const Rect& other) {
 	const float *thisOrigin = (const float*) glm::value_ptr(this->origin);
 	const float *otherOrigin = (const float*) glm::value_ptr(other.origin);
 
-	return (abs(thisOrigin[0] - otherOrigin[0]) * 2 < this->width + other.width)
-		&& (abs(thisOrigin[1] - otherOrigin[1]) * 2 < this->height + other.height);
+	return (thisOrigin[0] < otherOrigin[0] + other.width
+		&& thisOrigin[0] + this->width > otherOrigin[0]
+		&& thisOrigin[1] < otherOrigin[1] + other.height
+		&& this->height + thisOrigin[1] > otherOrigin[1]);
+}
+
+bool Rect::isInside(const Rect& other) {
+	const float *thisOrigin = (const float*)glm::value_ptr(this->origin);
+	const float *otherOrigin = (const float*)glm::value_ptr(other.origin);
+
+	return (thisOrigin[0] > otherOrigin[0]
+		&& thisOrigin[0] + this->width < otherOrigin[0] + other.width
+		&& thisOrigin[1] > otherOrigin[1]
+		&& this->height + thisOrigin[1] < otherOrigin[1] + other.height);
 }
 
 // Load from a file with cursor already positioned with Rect information.
@@ -40,4 +58,16 @@ void Rect::loadFromFile(std::ifstream& file) {
 	float x, y;
 	file >> x >> y >> this->width >> this->height;
 	this->origin = glm::vec2(x, y);
+}
+
+glm::vec2 Rect::getOrigin() {
+	return this->origin;
+}
+
+float Rect::getWidth() {
+	return this->width;
+}
+
+float Rect::getHeight() {
+	return this->height;
 }

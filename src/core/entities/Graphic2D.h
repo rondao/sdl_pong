@@ -53,7 +53,8 @@ public:
 	void setPositionAttrib(GLuint posAttrib);
 	void setColorAttrib(GLuint colAttrib);
 
-	bool checkCollision(const Graphic2D& other);
+	bool isColliding(const Graphic2D& other);
+	bool isColliding(const Rect& rect);
 
 	void loadFromFile(const char* filename);
 };
