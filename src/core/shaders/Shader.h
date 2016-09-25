@@ -23,11 +23,14 @@ public:
 	virtual ~Shader();
 
 private:
+	static Shader* currentShader;
+
 	GLuint vertexShader;
 	GLuint fragmentShader;
 	GLuint shaderProgram;
 
 public:
+	static Shader* getCurrentShader();
 	GLuint loadFromFile(const char* filename, GLuint shaderType);
 
 	void linkProgram();

@@ -31,6 +31,11 @@ Shader::~Shader() {
 
 }
 
+Shader* Shader::currentShader = NULL;
+Shader* Shader::getCurrentShader() {
+	return Shader::currentShader;
+}
+
 void Shader::linkProgram() {
 	// Link the vertex and fragment shader into a shader program.
 	shaderProgram = glCreateProgram();
@@ -65,6 +70,7 @@ void Shader::linkProgram() {
 
 void Shader::useProgram() {
 	glUseProgram(shaderProgram);
+	Shader::currentShader = this;
 }
 
 GLuint Shader::loadFromFile(const char* filename, GLuint shaderType) {
