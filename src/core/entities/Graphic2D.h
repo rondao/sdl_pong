@@ -32,12 +32,12 @@ private:
 	GLuint bVertices;
 	GLuint bColors;
 
-	Rect boundingBox;
-
 	glm::mat4 modelMatrix;
 	glm::mat4 prevModelMatrix;
 
 protected:
+	Rect boundingBox;
+
 	std::shared_ptr<std::vector<GLfloat>> dataPosition;
 	std::shared_ptr<std::vector<GLfloat>> dataColor;
 	std::shared_ptr<std::vector<GLuint>> dataEbo;
@@ -57,4 +57,6 @@ public:
 	bool isColliding(const Rect& rect);
 
 	void loadFromFile(const char* filename);
+
+	Rect getBoundingBox();
 };

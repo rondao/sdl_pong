@@ -145,3 +145,7 @@ void Graphic2D::loadFromFile(const char* filename) {
 	// Close the file
 	file.close();
 }
+
+Rect Graphic2D::getBoundingBox() {
+	return this->boundingBox;
+}
