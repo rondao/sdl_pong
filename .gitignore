@@ -1,5 +1,5 @@
-Debug/
-Release/
-ipch/
-.vs/
-p01_pong.*
+/Debug/
+/Release/
+/ipch/
+/.vs/
+/p01_pong.*
