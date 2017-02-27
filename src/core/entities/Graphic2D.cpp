@@ -81,6 +81,10 @@ void Graphic2D::transformModelMatrix(const glm::mat4 &transformMatrix) {
 	this->modelMatrix = transformMatrix * this->modelMatrix;
 }
 
+void Graphic2D::resetModelMatrix() {
+	this->modelMatrix = this->prevModelMatrix;
+}
+
 void Graphic2D::setPositionAttrib(GLuint posAttrib) {
 	glBindVertexArray(vao);
 	glBindBuffer(GL_ARRAY_BUFFER, bVertices);

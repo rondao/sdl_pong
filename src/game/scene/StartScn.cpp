@@ -9,7 +9,9 @@
 
 StartScn::StartScn() :
 	// TODO: Hardcoded shader loading.
-	defaultShader("res/shaders/defaultShader.vert", "res/shaders/defaultShader.frag") {
+	defaultShader("res/shaders/defaultShader.vert", "res/shaders/defaultShader.frag"),
+	// TODO: Hardcoded screen size.
+	playArea(-1.0f, -1.0f, 2.0f, 2.0f) {
 }
 
 StartScn::~StartScn() {
@@ -17,6 +19,7 @@ StartScn::~StartScn() {
 
 void StartScn::onInit() {
 	defaultShader.useProgram();
+
 	leftPaddle.onInit();
 	rightPaddle.onInit();
 
@@ -47,6 +50,7 @@ void StartScn::onRender(float fpsInterpolation) {
 	// This call to set modelMatrix inside shader should be on Core side.
 	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(leftPaddle.getModelMatrix(fpsInterpolation)));
 	leftPaddle.onRender();
+
 	// This call to set modelMatrix inside shader should be on Core side.
 	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(rightPaddle.getModelMatrix(fpsInterpolation)));
 	rightPaddle.onRender();
@@ -59,6 +63,10 @@ void StartScn::onPreUpdate() {
 
 void StartScn::onUpdate() {
 	leftPaddle.move();
+	Rect bb = leftPaddle.getBoundingBox().applyModelMatrix(leftPaddle.getModelMatrix(0));
+	if (!bb.isInside(playArea)) {
+		leftPaddle.resetModelMatrix();
+	}
 }
 
 // TODO: Remove SDL Specifics. It should be on Core side.

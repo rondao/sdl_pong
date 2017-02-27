@@ -48,6 +48,7 @@ public:
 	void onRender();
 
 	void transformModelMatrix(const glm::mat4 &transformMatrix);
+	void resetModelMatrix();
 	const glm::mat4 getModelMatrix(float fpsInterpolation);
 
 	void setPositionAttrib(GLuint posAttrib);

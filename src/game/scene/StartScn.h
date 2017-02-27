@@ -24,6 +24,8 @@ public:
 private:
 	Shader defaultShader;
 
+	Rect playArea;
+
 	Paddle leftPaddle;
 	Paddle rightPaddle;
 
